@@ -1,0 +1,581 @@
+/* 答题页样式 —— 策展图录 */
+.quiz-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--paper);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* 顶部栏 */
+.quiz-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px 14px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(247, 237, 233, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+@media (max-width: 340px) {
+  .quiz-header {
+    padding: 16px 16px 12px;
+  }
+}
+
+.back-btn {
+  min-width: 64px;
+  justify-content: flex-start;
+  padding-left: 0;
+  letter-spacing: 0.06em;
+}
+
+.back-btn span:first-child {
+  font-size: 15px;
+  margin-right: 3px;
+  transition: transform var(--duration-fast) var(--ease);
+}
+
+.back-btn:hover span:first-child {
+  transform: translateX(-3px);
+}
+
+.quiz-product-name {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.22em;
+  text-indent: 0.22em;
+}
+
+/* 进度数字 —— Cormorant */
+.quiz-progress-text {
+  min-width: 64px;
+  text-align: right;
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 2px;
+  line-height: 1;
+}
+
+.quiz-progress-num {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--green);
+}
+
+.quiz-progress-sep {
+  font-size: 14px;
+  color: var(--muted-light);
+  margin: 0 1px;
+}
+
+.quiz-progress-total {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* 进度条 —— 极细发丝 + 墨绿填充 */
+.quiz-progress-bar {
+  height: 2px;
+  background-color: var(--line-soft);
+  position: sticky;
+  top: 55px;
+  z-index: 9;
+}
+
+.quiz-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--rose), var(--rose-deep));
+  transition: width var(--duration-slow) var(--ease-out-expo);
+  position: relative;
+}
+
+/* 主内容 */
+.quiz-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+@media (max-width: 340px) {
+  .quiz-main {
+    padding: 0 16px;
+  }
+}
+
+.quiz-content {
+  width: 100%;
+  max-width: 640px;
+  padding-top: var(--sp-8);
+  padding-bottom: var(--sp-6);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 图录编号行 */
+.quiz-catalog {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+  animation: qRise 0.55s var(--ease-out-expo) both;
+}
+
+.quiz-catalog-no {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+}
+
+.quiz-catalog-rule {
+  width: 28px;
+  height: 1px;
+  background-color: var(--gold-soft);
+}
+
+.quiz-catalog-chapter {
+  font-size: 12px;
+  font-style: italic;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+
+/* 章节标签 */
+.quiz-chapter {
+  margin-bottom: var(--sp-4);
+  font-family: var(--font-serif);
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  text-indent: 0.2em;
+  position: relative;
+  padding-left: var(--sp-4);
+  animation: qRise 0.55s var(--ease-out-expo) 0.05s both;
+}
+
+.quiz-chapter::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: var(--gold);
+  transform: translateY(-50%);
+}
+
+/* 题干 */
+.quiz-prompt {
+  font-size: var(--fs-prompt);
+  line-height: 1.42;
+  color: var(--ink);
+  margin-bottom: var(--sp-3);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  outline: none;
+  animation: qRise 0.6s var(--ease-out-expo) 0.1s both;
+}
+
+.quiz-hint {
+  margin-bottom: var(--sp-6);
+  animation: qRise 0.6s var(--ease-out-expo) 0.15s both;
+}
+
+@keyframes qRise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 选项容器 */
+.quiz-options {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  animation: qRise 0.6s var(--ease-out-expo) 0.2s both;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-3);
+}
+
+/* 带插图的选项：2 列纵向卡片 */
+.options-grid--images {
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3);
+}
+
+.option-card--image {
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0;
+  min-height: 0;
+  overflow: hidden;
+  gap: 0;
+}
+
+.option-card--image:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+
+.option-image-wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: var(--paper-deep);
+  overflow: hidden;
+}
+
+.option-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s var(--ease-out-expo),
+              filter var(--duration-normal) var(--ease);
+}
+
+.option-card--image:hover .option-image {
+  transform: scale(1.045);
+}
+
+/* 图片左上角字母徽标 —— Cormorant 衬线方标 */
+.option-image-letter {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  background-color: rgba(253, 248, 245, 0.92);
+  border: 1px solid rgba(74, 45, 52, 0.12);
+  border-radius: 3px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: all var(--duration-fast) var(--ease);
+}
+
+/* 图片右上角选中标记 */
+.option-image-check {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: bold;
+  color: #FCF3F0;
+  background-color: var(--green);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity var(--duration-normal) var(--ease-out-expo),
+              transform var(--duration-normal) var(--ease-out-expo);
+  box-shadow: 0 2px 8px rgba(140, 70, 89, 0.42);
+}
+
+.option-card--image.is-selected .option-image-check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.option-card--image.is-selected .option-image-letter {
+  color: #FCF3F0;
+  background-color: var(--green);
+  border-color: var(--green);
+}
+
+/* 未选中时图片略压暗，选中后恢复 */
+.options-grid--images:not(:has(.is-selected)) .option-image,
+.option-card--image:not(.is-selected) .option-image {
+  filter: saturate(0.88) brightness(0.97);
+}
+
+.option-card--image.is-selected .option-image {
+  filter: none;
+}
+
+/* 图片下方文字区 */
+.option-body {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  padding: var(--sp-3);
+}
+
+.option-card--image .option-body {
+  padding: var(--sp-3) var(--sp-4) var(--sp-4);
+}
+
+.option-card--image .option-body .option-letter {
+  display: none;
+}
+
+.option-card--image .option-body .option-check {
+  display: none;
+}
+
+.option-card--image .option-text {
+  font-size: var(--fs-caption);
+  line-height: var(--lh-relaxed);
+  padding-top: 0;
+}
+
+/* 选项卡片 —— 画廊卡纸卡 */
+.option-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  padding: var(--sp-4) var(--sp-4);
+  background-color: var(--surface);
+  border: var(--line-width) solid var(--line);
+  border-radius: var(--radius-option);
+  cursor: pointer;
+  min-height: 64px;
+  transition: border-color var(--duration-fast) var(--ease),
+              background-color var(--duration-fast) var(--ease),
+              box-shadow var(--duration-normal) var(--ease),
+              transform var(--duration-fast) var(--ease);
+  position: relative;
+  box-shadow: var(--shadow-card);
+}
+
+.option-card:hover {
+  border-color: var(--muted-light);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lift);
+}
+
+.option-card:focus-within {
+  border-color: var(--green);
+  box-shadow: 0 0 0 2px rgba(164, 87, 107, 0.15);
+}
+
+/* 选中态：墨绿描边 + 左侧古金指示条 */
+.option-card.is-selected {
+  background-color: var(--surface);
+  border-color: var(--green);
+  box-shadow: 0 0 0 1px var(--green), var(--shadow-card);
+}
+
+.option-card.is-selected::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  border-radius: 0 2px 2px 0;
+  background-color: var(--gold);
+}
+
+.option-letter {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--muted);
+  background-color: var(--paper);
+  border: var(--line-width) solid var(--line);
+  border-radius: 4px;
+  margin-top: 1px;
+  transition: all var(--duration-fast) var(--ease);
+}
+
+.option-card.is-selected .option-letter {
+  color: #FCF3F0;
+  background-color: var(--green);
+  border-color: var(--green);
+}
+
+.option-text {
+  flex: 1;
+  font-size: var(--fs-body);
+  line-height: var(--lh-relaxed);
+  color: var(--ink);
+  padding-top: 3px;
+}
+
+.option-check {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green);
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 2px;
+}
+
+/* E 选项 */
+.option-e {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-4) var(--sp-4);
+  background-color: transparent;
+  border: var(--line-width) dashed var(--line);
+  border-radius: var(--radius-option);
+  cursor: pointer;
+  min-height: 56px;
+  transition: border-color var(--duration-fast) var(--ease),
+              background-color var(--duration-fast) var(--ease),
+              box-shadow var(--duration-fast) var(--ease);
+  margin-top: var(--sp-2);
+}
+
+.option-e:hover {
+  border-color: var(--muted-light);
+  background-color: var(--surface);
+}
+
+.option-e:focus-within {
+  border-color: var(--green);
+  border-style: solid;
+  box-shadow: 0 0 0 2px rgba(164, 87, 107, 0.15);
+}
+
+.option-e.is-selected {
+  background-color: var(--surface);
+  border-color: var(--green);
+  border-style: solid;
+  box-shadow: 0 0 0 1px var(--green);
+}
+
+.option-e-letter {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted);
+  background-color: var(--paper);
+  border: var(--line-width) dashed var(--line);
+  border-radius: 4px;
+}
+
+.option-e.is-selected .option-e-letter {
+  color: #FCF3F0;
+  background-color: var(--green);
+  border-color: var(--green);
+  border-style: solid;
+}
+
+.option-e-text {
+  flex: 1;
+  font-size: var(--fs-caption);
+  line-height: var(--lh-relaxed);
+  color: var(--muted);
+}
+
+.option-e.is-selected .option-e-text {
+  color: var(--ink);
+}
+
+/* 底部行动栏 */
+.quiz-bottom-bar {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to bottom,
+    rgba(247, 237, 233, 0) 0%,
+    rgba(247, 237, 233, 0.72) 34%,
+    var(--paper) 66%);
+  padding: var(--sp-8) 20px var(--sp-6);
+  padding-bottom: calc(var(--sp-6) + env(safe-area-inset-bottom, 0px));
+  z-index: 10;
+}
+
+@media (max-width: 340px) {
+  .quiz-bottom-bar {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+.bottom-bar-inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.btn-arrow {
+  transition: transform var(--duration-normal) var(--ease);
+}
+
+.btn-primary:hover:not(:disabled) .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* 底部留白 */
+.quiz-bottom-spacer {
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* 桌面端样式 */
+@media (min-width: 768px) {
+  .quiz-content {
+    max-width: 660px;
+    padding-top: var(--sp-12);
+  }
+
+  .quiz-header {
+    max-width: 740px;
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .quiz-progress-bar {
+    max-width: 740px;
+    margin: 0 auto;
+  }
+
+  .bottom-bar-inner {
+    max-width: 660px;
+  }
+}

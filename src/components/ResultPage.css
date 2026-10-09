@@ -1,0 +1,534 @@
+/* 结果页样式 */
+.result-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--paper);
+  padding-bottom: var(--sp-12);
+}
+
+/* 顶部 */
+.result-header {
+  padding: var(--sp-8) 20px var(--sp-4);
+  text-align: center;
+}
+
+@media (max-width: 340px) {
+  .result-header {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+.result-eyebrow {
+  margin-bottom: var(--sp-2);
+}
+
+/* 主内容 */
+.result-main {
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+@media (max-width: 340px) {
+  .result-main {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+.result-content {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 结果名称 */
+.result-name {
+  font-size: var(--fs-result-name);
+  line-height: var(--lh-tight);
+  color: var(--ink);
+  text-align: center;
+  margin-bottom: var(--sp-2);
+}
+
+.result-english {
+  text-align: center;
+  margin-bottom: var(--sp-6);
+}
+
+/* 主画框（竖版 3:4 主视觉） */
+.result-frame {
+  margin: 0 0 var(--sp-6);
+}
+
+.result-frame--portrait {
+  width: 100%;
+  max-width: 340px;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  /* 主视觉笼罩一层极淡玫瑰氛围光 */
+  box-shadow:
+    0 1px 2px rgba(74, 45, 52, 0.05),
+    0 18px 48px -16px rgba(164, 87, 107, 0.30);
+}
+
+/* 竖版画框不用全局内框线，改用衬边 */
+.result-frame--portrait::before {
+  display: none;
+}
+
+.result-frame-inner {
+  margin: 14px 14px 0;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: var(--line-width) solid var(--line);
+  border-radius: 2px;
+  background-color: var(--paper);
+}
+
+.result-artwork-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.result-frame-caption {
+  text-align: center;
+  padding: var(--sp-3) var(--sp-4) var(--sp-4);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+}
+
+/* 关键词 —— 腮红粉展签：小方角、发丝边、宋体 */
+.result-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+}
+
+.keyword-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 13px;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  color: var(--rose-deep);
+  background-color: var(--rose-blush);
+  border: 1px solid rgba(192, 126, 142, 0.30);
+  border-radius: 999px;
+  letter-spacing: 0.12em;
+  text-indent: 0.12em;
+  box-shadow: 0 1px 2px rgba(164, 87, 107, 0.06);
+}
+
+.keyword-tag::before {
+  content: '';
+  width: 3px;
+  height: 3px;
+  margin-right: 9px;
+  border-radius: 50%;
+  background-color: var(--rose);
+}
+
+/* 结果摘要 */
+.result-summary {
+  font-family: var(--font-serif);
+  font-size: var(--fs-lead);
+  line-height: var(--lh-relaxed);
+  color: var(--ink);
+  text-align: center;
+  max-width: 480px;
+  margin-bottom: var(--sp-6);
+}
+
+/* 分隔线 —— 两端渐隐的发丝尺线 */
+.divider {
+  width: 100%;
+  height: 1px;
+  border: none;
+  margin: var(--sp-8) 0;
+  background: linear-gradient(to right,
+    transparent 0%,
+    var(--line) 16%,
+    var(--line) 84%,
+    transparent 100%);
+}
+
+/* 章节 */
+.result-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+/* 章节标题行：编号 + 短尺线 + 标题，紧凑图录编排 */
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-2);
+}
+
+.section-number {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  font-feature-settings: "lnum" 1;
+}
+
+.section-number::before {
+  content: 'No.';
+  margin-right: 5px;
+  font-size: 10.5px;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--gold-soft);
+}
+
+.section-head-rule {
+  flex: none;
+  width: 30px;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold-soft), transparent);
+}
+
+.section-title {
+  font-size: 21px;
+  color: var(--ink);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.section-lead {
+  margin-bottom: var(--sp-2);
+}
+
+.section-text {
+  font-size: var(--fs-body);
+  line-height: var(--lh-loose);
+  color: var(--ink);
+}
+
+/* 匹配依据列表 */
+.evidence-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  margin-top: var(--sp-2);
+}
+
+.evidence-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  background-color: var(--surface);
+  border-radius: var(--radius-card);
+  border: var(--line-width) solid var(--line);
+}
+
+.evidence-num {
+  flex-shrink: 0;
+  min-width: 26px;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--green);
+  line-height: 1.45;
+  font-feature-settings: "lnum" 1;
+}
+
+.evidence-text {
+  flex: 1;
+  font-size: var(--fs-caption);
+  line-height: var(--lh-relaxed);
+  color: var(--muted);
+}
+
+/* 练习卡片 */
+.practice-card {
+  margin-top: var(--sp-2);
+  padding: var(--sp-6);
+  background-color: var(--green-soft);
+  border-radius: var(--radius-card);
+  border-left: 3px solid var(--green);
+}
+
+.practice-card .section-text {
+  color: var(--ink);
+}
+
+/* 底部行动 */
+.result-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+}
+
+.result-actions .btn-primary {
+  max-width: 320px;
+}
+
+.result-secondary-actions {
+  display: flex;
+  gap: var(--sp-6);
+}
+
+/* 底部说明 */
+.result-footer-note {
+  text-align: center;
+  margin-top: var(--sp-8);
+}
+
+/* 桌面端样式 */
+@media (min-width: 768px) {
+  .result-header {
+    padding-top: var(--sp-12);
+  }
+
+  .result-name {
+    font-size: 48px;
+  }
+
+  .section-title {
+    font-size: 26px;
+  }
+
+  .result-actions {
+    margin-top: var(--sp-6);
+  }
+}
+
+/* 极窄屏：标题允许折行，避免尺线挤压 */
+@media (max-width: 360px) {
+  .section-head {
+    flex-wrap: wrap;
+  }
+
+  .section-title {
+    white-space: normal;
+  }
+
+  .section-head-rule {
+    display: none;
+  }
+}
+
+/* ===== 画派名片 ===== */
+.style-card {
+  width: 100%;
+  margin-top: var(--sp-2);
+  padding: var(--sp-6) 20px 20px;
+  background-color: var(--surface);
+  background-image: linear-gradient(160deg, rgba(245, 225, 228, 0.55), rgba(253, 248, 245, 0) 62%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.style-card-eyebrow {
+  margin: 0;
+  color: var(--rose-deep);
+  font-size: 11px;
+}
+
+.style-card-motto {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 23px;
+  line-height: 1.5;
+  color: var(--ink);
+  font-weight: 500;
+  position: relative;
+  padding-left: var(--sp-4);
+}
+
+.style-card-motto::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.32em;
+  bottom: 0.32em;
+  width: 3px;
+  border-radius: 2px;
+  background: linear-gradient(var(--rose), var(--gold-soft));
+}
+
+.style-card-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  padding-top: var(--sp-3);
+  border-top: 1px dashed var(--line);
+}
+
+.style-card-label {
+  flex: none;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  min-width: 56px;
+}
+
+.style-card-palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px var(--sp-3);
+}
+
+.palette-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.palette-dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid rgba(74, 45, 52, 0.12);
+  box-shadow: inset 0 0 0 1.5px rgba(253, 248, 245, 0.75);
+}
+
+.style-card-weekend {
+  font-family: var(--font-serif);
+  font-size: 14.5px;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+/* ===== 心动瞬间：完整引用，提升可读性 ===== */
+.evidence-text {
+  font-size: 14px;
+  line-height: var(--lh-relaxed);
+  color: var(--ink-soft);
+}
+
+/* ===== 代表人物/作品 展签 ===== */
+.master-labels {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+}
+
+.master-label {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+  margin: 0;
+  padding: 9px 13px;
+  background-color: var(--rose-blush);
+  border-radius: 2px;
+}
+
+.master-label-key {
+  flex: none;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--rose-deep);
+  min-width: 56px;
+}
+
+.master-label-val {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  color: var(--ink);
+}
+
+/* ===== 画派搭子 ===== */
+.match-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3);
+  width: 100%;
+}
+
+.match-card {
+  padding: var(--sp-4) var(--sp-4) var(--sp-3);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--line);
+  background-color: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.match-card--best {
+  background-image: linear-gradient(165deg, rgba(192, 126, 142, 0.13), rgba(253, 248, 245, 0) 70%);
+  border-color: rgba(192, 126, 142, 0.38);
+}
+
+.match-card--contrast {
+  background-image: linear-gradient(165deg, rgba(177, 128, 111, 0.12), rgba(253, 248, 245, 0) 70%);
+}
+
+.match-tag {
+  margin: 0 0 var(--sp-2);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--rose-deep);
+}
+
+.match-card--contrast .match-tag {
+  color: var(--gold);
+}
+
+.match-name {
+  margin: 0 0 4px;
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.match-en {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--muted-light);
+}
+
+.match-desc {
+  margin: var(--sp-2) 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ===== 社交引导 ===== */
+.share-invite {
+  margin: 0;
+  color: var(--rose-deep);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 340px) {
+  .match-cards {
+    grid-template-columns: 1fr;
+  }
+}

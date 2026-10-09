@@ -1,0 +1,11 @@
+/* 决胜题页面 - 复用答题页样式，此处仅补充特定样式 */
+.tiebreaker-label {
+  color: var(--gold);
+}
+
+.tiebreaker-progress {
+  min-width: 64px;
+  text-align: right;
+  color: var(--muted);
+  white-space: nowrap;
+}

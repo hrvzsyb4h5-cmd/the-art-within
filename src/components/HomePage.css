@@ -1,0 +1,550 @@
+/* 首页样式 —— 策展图录 */
+.home-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--paper);
+  padding: 0 20px;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+@media (max-width: 340px) {
+  .home-page {
+    padding: 0 16px;
+  }
+}
+
+/* 顶部品牌栏 —— 发丝底线 */
+.home-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line-soft);
+  position: relative;
+}
+
+.home-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background-color: var(--line-soft);
+  opacity: 0.5;
+}
+
+.brand-name {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  color: var(--ink);
+  letter-spacing: 0.18em;
+  text-indent: 0.18em;
+}
+
+.about-btn {
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+/* 主内容区 */
+.home-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 640px;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--sp-8) 0;
+}
+
+.home-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+}
+
+/* 文案区 */
+.home-hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+/* 眉题：两侧发丝线 */
+.home-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-4);
+  white-space: nowrap;
+}
+
+.eyebrow-line {
+  display: inline-block;
+  width: 36px;
+  height: 1px;
+  background-color: var(--gold-soft);
+}
+
+.home-title {
+  font-size: var(--fs-title);
+  line-height: 1.28;
+  color: var(--ink);
+  margin-top: var(--sp-2);
+  font-weight: 600;
+}
+
+.title-accent {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* 手描玫瑰线：起笔轻、行笔实，如策展人在图录上的批注划线 */
+.title-accent::after {
+  content: '';
+  position: absolute;
+  left: 0.04em;
+  right: 0.02em;
+  bottom: -0.01em;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg,
+    rgba(192, 126, 142, 0.15) 0%,
+    var(--rose) 14%,
+    var(--gold-soft) 52%,
+    rgba(177, 128, 111, 0.55) 100%);
+  opacity: 0.85;
+  transform-origin: left center;
+  animation: underlineDraw 1.1s 0.55s var(--ease-out-expo) both;
+}
+
+@keyframes underlineDraw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.home-subtitle {
+  font-size: var(--fs-lead);
+  line-height: var(--lh-relaxed);
+  color: var(--muted);
+  margin-top: var(--sp-2);
+}
+
+/* 策展规格行：Cormorant 数字 + 竖线分隔 */
+.home-specs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-6);
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.spec-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.spec-num {
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--green);
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.spec-rule {
+  width: 1px;
+  height: 13px;
+  background-color: var(--line);
+}
+
+/* 画框区 */
+.home-frame-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-frame {
+  width: 100%;
+  max-width: 480px;
+  container-type: inline-size;
+  transition: transform var(--duration-slow) var(--ease-out-expo),
+              box-shadow var(--duration-slow) var(--ease-out-expo);
+}
+
+.home-frame:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+.home-frame .art-frame-inner {
+  aspect-ratio: auto;
+  padding: 22px;
+}
+
+.home-frame-art-wrap {
+  position: relative;
+  display: block;
+  border-radius: 2px;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 0 0 1px rgba(74, 45, 52, 0.06);
+}
+
+.home-frame-art {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 1.4s var(--ease-out-expo);
+}
+
+.home-frame:hover .home-frame-art {
+  transform: scale(1.035);
+}
+
+/* 朱砂收藏印 —— 小而雅地钤于画面右下，暗合私人珍藏的图录叙事 */
+.hero-seal {
+  position: absolute;
+  right: 2.4%;
+  bottom: 2.2%;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 9.6cqw;
+  min-width: 30px;
+  max-width: 44px;
+  aspect-ratio: 1;
+  background-color: var(--cinnabar);
+  color: #FBEDE9;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 13px;
+  font-size: 3.5cqw;
+  line-height: 1.12;
+  border-radius: 16%;
+  transform: rotate(-5deg);
+  pointer-events: none;
+  opacity: 0.9;
+  box-shadow:
+    inset 0 0 0 0.5cqw rgba(251, 237, 233, 0.85),
+    inset 0 0 1.4cqw rgba(76, 22, 26, 0.4),
+    0 1px 2px rgba(76, 22, 26, 0.25);
+  mix-blend-mode: multiply;
+  animation: sealPress 0.7s 0.9s var(--ease-out-expo) both;
+}
+
+.hero-seal span {
+  display: block;
+}
+
+@keyframes sealPress {
+  from {
+    opacity: 0;
+    transform: rotate(-5deg) scale(1.5);
+  }
+  to {
+    opacity: 0.9;
+    transform: rotate(-5deg) scale(1);
+  }
+}
+
+/* 画廊墙牌 —— 画框外下方，左对齐的作品标签 */
+.wall-label {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+  padding: var(--sp-4) 6px 0;
+  text-align: left;
+}
+
+.wall-label-index {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.wall-label-title {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  color: var(--ink);
+  letter-spacing: 0.12em;
+  flex-shrink: 0;
+}
+
+.wall-label-en {
+  font-size: 12px;
+  font-style: italic;
+  color: var(--muted-light);
+  letter-spacing: 0.08em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 行动区 */
+.home-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-top: var(--sp-8);
+}
+
+.home-actions .btn-primary {
+  max-width: 320px;
+}
+
+.btn-arrow {
+  transition: transform var(--duration-normal) var(--ease);
+}
+
+.btn-primary:hover:not(:disabled) .btn-arrow {
+  transform: translateX(4px);
+}
+
+.reset-btn {
+  margin-top: var(--sp-2);
+  letter-spacing: 0.08em;
+}
+
+.home-hint {
+  margin-top: var(--sp-4);
+  text-align: center;
+}
+
+/* 页脚 */
+.home-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-6) 0;
+}
+
+.footer-rule {
+  width: 40px;
+  height: 1px;
+  background-color: var(--line);
+}
+
+/* 弹层通用 */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(52, 32, 37, 0.44);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeIn var(--duration-normal) var(--ease);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-dialog {
+  background-color: var(--surface);
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  border-top: 2px solid var(--green);
+  width: 100%;
+  max-width: 480px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: var(--sp-8) var(--sp-6) var(--sp-6);
+  position: relative;
+  animation: slideUp var(--duration-slow) var(--ease-out-expo);
+  box-shadow: 0 -12px 48px rgba(74, 45, 52, 0.22);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: var(--sp-4);
+  right: var(--sp-4);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--muted);
+  border-radius: 50%;
+  transition: background-color var(--duration-fast) var(--ease);
+}
+
+.modal-close:hover {
+  background-color: rgba(164, 87, 107, 0.09);
+  color: var(--ink);
+}
+
+.modal-title {
+  font-size: 23px;
+  font-weight: 600;
+  margin-bottom: var(--sp-6);
+  padding-right: var(--sp-12);
+}
+
+.modal-content {
+  line-height: var(--lh-loose);
+}
+
+.modal-desc {
+  color: var(--muted);
+  margin-bottom: var(--sp-6);
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+/* 关于测试列表 —— 图录目录：罗马序号 + 发丝行线 */
+.about-list {
+  list-style: none;
+  counter-reset: about;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-list li {
+  counter-increment: about;
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  column-gap: var(--sp-4);
+  row-gap: 2px;
+  padding: var(--sp-4) 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.about-list li:first-child {
+  padding-top: 0;
+}
+
+.about-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.about-list li::before {
+  content: counter(about, upper-roman);
+  grid-row: span 2;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  font-feature-settings: "lnum" 1;
+}
+
+.about-list strong {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.about-list p {
+  margin: 0;
+}
+
+/* 确认弹层 */
+.confirm-modal {
+  padding-top: var(--sp-8);
+}
+
+/* 桌面端样式 */
+@media (min-width: 768px) {
+  .home-main {
+    max-width: 1080px;
+  }
+
+  .home-content {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--sp-12);
+  }
+
+  .home-hero-text {
+    flex: 1;
+    max-width: 500px;
+  }
+
+  .home-frame-wrapper {
+    flex: 1;
+  }
+
+  .home-frame,
+  .wall-label {
+    max-width: 440px;
+  }
+
+  .home-actions {
+    margin-top: var(--sp-12);
+  }
+
+  /* 桌面端弹层居中 */
+  .modal-overlay {
+    align-items: center;
+    padding: var(--sp-6);
+  }
+
+  .modal-dialog {
+    border-radius: var(--radius-card);
+    border-top: 2px solid var(--green);
+    animation: popIn var(--duration-slow) var(--ease-out-expo);
+  }
+
+  @keyframes popIn {
+    from {
+      transform: scale(0.96) translateY(8px);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .about-modal {
+    max-width: 480px;
+  }
+
+  .confirm-modal {
+    max-width: 400px;
+  }
+}
