@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { prefetchQuestionImages } from '../utils/prefetch';
 import './HomePage.css';
 
 interface HomePageProps {
@@ -20,6 +21,11 @@ const HomePage: React.FC<HomePageProps> = ({
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const aboutBtnRef = useRef<HTMLButtonElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
+
+  // 首页加载后空闲预取第1题插图，开始答题时首屏更快
+  useEffect(() => {
+    prefetchQuestionImages(1);
+  }, []);
 
   // 弹层键盘事件
   useEffect(() => {

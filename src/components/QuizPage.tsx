@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import type { AnswerRecord, OptionLetter } from '../data/types';
 import { questions } from '../data/questions';
+import { prefetchQuestionImages } from '../utils/prefetch';
 import './QuizPage.css';
 
 interface QuizPageProps {
@@ -25,11 +26,20 @@ const QuizPage: React.FC<QuizPageProps> = ({
   const selectedLetter = currentAnswer?.optionLetter || null;
   const isLastQuestion = currentQuestionNumber === questions.length;
   const promptRef = useRef<HTMLHeadingElement>(null);
+  // 已完成加载的插图路径，用于淡入
+  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
 
   // 题目切换时滚动到顶部并聚焦题干
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     promptRef.current?.focus({ preventScroll: true });
+  }, [currentQuestionNumber]);
+
+  // 进入当前题后，后台预取下一题插图，切题时图片已在缓存中
+  useEffect(() => {
+    if (currentQuestionNumber < questions.length) {
+      prefetchQuestionImages(currentQuestionNumber + 1);
+    }
   }, [currentQuestionNumber]);
 
   const handleSelect = (letter: OptionLetter) => {
@@ -157,11 +167,19 @@ const QuizPage: React.FC<QuizPageProps> = ({
                       {option.imagePath && (
                         <span className="option-image-wrap">
                           <img
-                            className="option-image"
+                            className={`option-image${loadedImages[option.imagePath] ? ' is-loaded' : ''}`}
                             src={option.imagePath}
                             alt=""
                             loading="lazy"
+                            decoding="async"
                             draggable={false}
+                            onLoad={() =>
+                              setLoadedImages((prev) =>
+                                prev[option.imagePath!]
+                                  ? prev
+                                  : { ...prev, [option.imagePath!]: true },
+                              )
+                            }
                           />
                           <span className="option-image-letter" aria-hidden="true">
                             {option.letter}

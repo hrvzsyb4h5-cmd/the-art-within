@@ -36,7 +36,8 @@
   --error: #A8443B;
 
   /* 字体 */
-  --font-serif: 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
+  --font-serif: 'Noto Serif SC', 'Noto Serif CJK SC', 'Source Han Serif SC',
+    'Songti SC', 'STSong', 'SimSun', serif;
   --font-display: 'Cormorant Garamond', 'Noto Serif SC', 'Songti SC', Georgia, serif;
   --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
     'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
